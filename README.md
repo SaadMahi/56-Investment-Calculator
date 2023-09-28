@@ -1,2 +1,2 @@
-# 56-investment-calculator
-investment calculator project using React
+# [📈 Investment Calculator 🧮](https://saadmahi.github.io/56-investment-calculator/)
+
