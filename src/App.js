@@ -13,7 +13,6 @@ function App() {
 
   const yearlyData = []; // per-year results
 
-
   // default useState is null which means false,
   // therefore we use if statement, if condition is true
   // below calc will get executed
@@ -35,22 +34,30 @@ function App() {
         yearlyContribution: yearlyContribution,
       });
     }
-
-  
   }
-    // do something with yearlyData ...
-    // console.log(yearlyData[0]);
+  // do something with yearlyData ...
+  // console.log(yearlyData[0]);
 
   return (
     <div>
       <Header />
 
-      <Form userInputCalculator={calculateHandler} />
+      <Form userInputCalculator={calculateHandler} 
+        setUserInput={setUserInput}
+      />
 
-  {!userInput && <center>please input data for calculation</center>}
-  {userInput && <Table calculatedData={yearlyData} initialInvestment={userInput["current-savings"]}/>}
-
-      
+      {!userInput && <>
+      <p style={{width: '80%', margin: '0 auto', textAlign: 'center'}}>On the 1st year, interest is given upon the current saving then the current saving 
+      is added up with your interest amount and yearly saving and passed on to next year
+      and the same process goes on.</p>
+      </>
+      }
+      {userInput && (
+        <Table
+          calculatedData={yearlyData}
+          initialInvestment={userInput["current-savings"]}
+        />
+      )}
     </div>
   );
 }

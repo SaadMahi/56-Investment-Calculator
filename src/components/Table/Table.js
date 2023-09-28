@@ -30,10 +30,10 @@ const Table = function(props){
           return(
           <tr key={yearData.year}>
             <td>{yearData.year}</td>
-            <td>{currencyFormatter.format(yearData.savingsEndOfYear)}</td>
-            <td>{currencyFormatter.format(yearData.yearlyInterest)}</td>
-            <td>{currencyFormatter.format(yearData.savingsEndOfYear - props.initialInvestment - yearData.yearlyContribution * yearData.year)}</td>
-            <td>{currencyFormatter.format(props.initialInvestment + yearData.yearlyContribution * yearData.year)}</td>
+            <td>{currencyFormatter.format(yearData.savingsEndOfYear)+ '/-'}</td>
+            <td>{currencyFormatter.format(yearData.yearlyInterest)+ '/-'}</td>
+            <td>{currencyFormatter.format(yearData.savingsEndOfYear - props.initialInvestment - yearData.yearlyContribution * yearData.year)+ '/-'}</td>
+            <td>{currencyFormatter.format(props.initialInvestment + yearData.yearlyContribution * yearData.year) + '/-'}</td>
           </tr>
           )
         })}
