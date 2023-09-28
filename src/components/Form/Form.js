@@ -24,7 +24,7 @@ const Form = function () {
     setInput(defaultFormInput);
   };
 
-  // single input function using for all inputs
+  // single input onChange handler extracting all inputs data's
   // here we will pass in two parametrs, user input and value
   const inputChangeHandler = (input, value) => {
     console.log(input, value);
