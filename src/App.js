@@ -1,18 +1,27 @@
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
 import Table from "./components/Table/Table";
+import { useState } from "react";
 
 function App() {
+  const [userInput, setUserInput] = useState(null);
+
   const calculateHandler = (userInput) => {
     // Should be triggered when form is submitted
-    // You might not directly want to bind it to the submit event on the form though...
+    setUserInput(userInput);
+  };
 
-    const yearlyData = []; // per-year results
+  const yearlyData = []; // per-year results
 
-    let currentSavings = +userInput['current-savings']; // feel free to change the shape of this input object!
-    const yearlyContribution = +userInput['yearly-contribution']; // as mentioned: feel free to change the shape...
-    const expectedReturn = +userInput['expected-return'] / 100;
-    const duration = +userInput['duration'];
+
+  // default useState is null which means false,
+  // therefore we use if statement, if condition is true
+  // below calc will get executed
+  if (userInput) {
+    let currentSavings = +userInput["current-savings"]; // feel free to change the shape of this input object!
+    const yearlyContribution = +userInput["yearly-contribution"]; // as mentioned: feel free to change the shape...
+    const expectedReturn = +userInput["expected-return"] / 100;
+    const duration = +userInput["duration"];
 
     // The below code calculates yearly results (total savings, interest etc)
     for (let i = 0; i < duration; i++) {
@@ -27,20 +36,21 @@ function App() {
       });
     }
 
+  
+  }
     // do something with yearlyData ...
-  };
+    // console.log(yearlyData[0]);
 
   return (
     <div>
-  
-<Header />
-      
-      <Form />
+      <Header />
 
-      {/* Todo: Show below table conditionally (only once result data is available) */}
-      {/* Show fallback text if no data is available */}
-<Table />
-     
+      <Form userInputCalculator={calculateHandler} />
+
+  {!userInput && <center>please input data for calculation</center>}
+  {userInput && <Table calculatedData={yearlyData} initialInvestment={userInput["current-savings"]}/>}
+
+      
     </div>
   );
 }

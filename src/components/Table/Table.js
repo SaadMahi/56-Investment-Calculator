@@ -1,4 +1,15 @@
-const Table = function(){
+const Table = function(props){
+
+  // this is js built in currency formatter
+  const currencyFormatter = new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 2,
+    maximumFractionDigits:2
+  })
+
+  // console.log(props.calculatedData)
+
     return(
         <table className="result">
         <thead>
@@ -10,14 +21,24 @@ const Table = function(){
             <th>Invested Capital</th>
           </tr>
         </thead>
+
+
+
         <tbody>
-          <tr>
-            <td>YEAR NUMBER</td>
-            <td>TOTAL SAVINGS END OF YEAR</td>
-            <td>INTEREST GAINED IN YEAR</td>
-            <td>TOTAL INTEREST GAINED</td>
-            <td>TOTAL INVESTED CAPITAL</td>
+
+        {props.calculatedData.map((yearData) => {
+          return(
+          <tr key={yearData.year}>
+            <td>{yearData.year}</td>
+            <td>{currencyFormatter.format(yearData.savingsEndOfYear)}</td>
+            <td>{currencyFormatter.format(yearData.yearlyInterest)}</td>
+            <td>{currencyFormatter.format(yearData.savingsEndOfYear - props.initialInvestment - yearData.yearlyContribution * yearData.year)}</td>
+            <td>{currencyFormatter.format(props.initialInvestment + yearData.yearlyContribution * yearData.year)}</td>
           </tr>
+          )
+        })}
+
+        
         </tbody>
       </table>
     )

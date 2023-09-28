@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-const Form = function () {
+const Form = function (props) {
   // default form input
   // on duration we haven't used '' as it as no -dash
   const defaultFormInput = {
-    "current-savings": 10000,
+    "current-savings": 1000,
     "yearly-contribution": 1200,
-    "expected-return": 7,
+    "expected-return": 10,
     duration: 5,
   };
 
@@ -16,7 +16,8 @@ const Form = function () {
   // form submit
   const userInput = (e) => {
     e.preventDefault();
-    console.log("CALCULATE");
+    // console.log("form.js calculate");
+    props.userInputCalculator(defInput);
   };
 
   // reset button
