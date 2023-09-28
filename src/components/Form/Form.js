@@ -23,6 +23,7 @@ const Form = function (props) {
   // reset button
   const resetBtn = (e) => {
     setInput(defaultFormInput);
+    props.setUserInput(null)
   };
 
   // single input onChange handler extracting all inputs data's
