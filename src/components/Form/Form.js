@@ -33,7 +33,7 @@ const Form = function (props) {
     setInput((prev) => {
       return {
         ...prev,
-        [input]: +value,
+        [input]: value ? +value : '',
       };
     });
   };
