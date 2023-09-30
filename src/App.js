@@ -1,7 +1,7 @@
-import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
-import Table from "./components/Table/Table";
-import { useState } from "react";
+import Header from './components/Header/Header';
+import Form from './components/Form/Form';
+import Table from './components/Table/Table';
+import { useState } from 'react';
 
 function App() {
   const [userInput, setUserInput] = useState(null);
@@ -17,10 +17,10 @@ function App() {
   // therefore we use if statement, if condition is true
   // below calc will get executed
   if (userInput) {
-    let currentSavings = +userInput["current-savings"]; // feel free to change the shape of this input object!
-    const yearlyContribution = +userInput["yearly-contribution"]; // as mentioned: feel free to change the shape...
-    const expectedReturn = +userInput["expected-return"] / 100;
-    const duration = +userInput["duration"];
+    let currentSavings = +userInput['current-savings']; // feel free to change the shape of this input object!
+    const yearlyContribution = +userInput['yearly-contribution']; // as mentioned: feel free to change the shape...
+    const expectedReturn = +userInput['expected-return'] / 100;
+    const duration = +userInput['duration'];
 
     // The below code calculates yearly results (total savings, interest etc)
     for (let i = 0; i < duration; i++) {
@@ -42,20 +42,21 @@ function App() {
     <div>
       <Header />
 
-      <Form userInputCalculator={calculateHandler} 
+      <Form
+        userInputCalculator={calculateHandler}
         setUserInput={setUserInput}
       />
 
-      {!userInput && <>
-      <p style={{width: '80%', margin: '0 auto', textAlign: 'center'}}>On the 1st year, interest is given upon the current saving then the current saving 
-      is added up with your interest amount and yearly saving and passed on to next year
-      and the same process goes on.</p>
-      </>
-      }
-      {userInput && (
+      {!userInput ? (
+        <p style={{ width: '80%', margin: '0 auto', textAlign: 'center' }}>
+          On the 1st year, interest is given upon the current saving then the
+          current saving is added up with your interest amount and yearly saving
+          and passed on to next year and the same process goes on.
+        </p>
+      ) : (
         <Table
           calculatedData={yearlyData}
-          initialInvestment={userInput["current-savings"]}
+          initialInvestment={userInput['current-savings']}
         />
       )}
     </div>
